@@ -50,12 +50,12 @@
     <header id="header" class="header">
       <div class="container">
         <div class=" row">
-          <div class="header--title col-md-4">
+          <div class="header--title col-md-5">
             <a href="./" style="text-decoration:none">
             <h3 class="header--title__content">VEGEFOODS</h3>
             </a>
         </div>
-          <div class="header--nav col-md-8">
+          <div class="header--nav col-md-7">
               <ul class="header--nav__list">
                   <li class="header--nav__item">
                       <a href="/VEGEFOODS" class="nav__link">Trang chủ</a>
@@ -63,9 +63,9 @@
                   <li class="header--nav__item">
                       <a href="" class="nav__link">Giới thiệu</a>
                 </li>
-                  <li class="header--nav__item">
+                  <!-- <li class="header--nav__item">
                       <a href="" class="nav__link">Blog</a>
-                </li>
+                </li> -->
                   <li class="header--nav__item">
                       <a href="" class="nav__link">Liên hệ</a>
                 </li>

@@ -1,4 +1,5 @@
 <?php 
+
 	$productModel = new ModelProduct();
 	$product_num = $productModel->getAllProduct()->num_rows;
 	$userModel = new UserModel();

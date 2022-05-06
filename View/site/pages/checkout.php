@@ -2,6 +2,7 @@
 	require('../../../Model/Database.php');
 	require '../../../Model/ModelProduct.php';
 	require('../../../Model/UserModel.php');
+	require('../../../Model/ModelOrder.php');
     if($_SESSION['quantity']==0){
         ?>
         <script>
@@ -40,7 +41,7 @@
   </head>
   <body>
     <div class="main-checkout">
-        <form class="checkout-form" method="post" action="/VEGEFOODS/?controller=order">
+        <form class="checkout-form" method="post" action="/VEGEFOODS/vnpay_php/vnpay_create_payment.php">
             <div class="main">
                 <?php
                     if(isset($_SESSION['email_user'])){
@@ -141,30 +142,67 @@
 
                         </div>
                         <div class="main__content--right">
-                            <!-- <div class="tranport">
+                            <div class="tranport">
                                 <div class="tranport__title">
                                     <h6>Vận chuyển</h6>
                                 </div>
                                 <div class="radio-wrapper">
-                                    <input type="radio" name="tranport" id="tranport" class="radio__input">
+                                    <input checked type="radio" name="tranport" id="tranport" class="radio__input">
                                     <label for="tranport" class="radio__label">
                                         <span class="radio__label__primary">Giao hàng tận nơi</span>
-                                        <span class="radio__label__accessory">40.000đ</span>
+                                        <span class="radio__label__accessory"><?php $phivanchuyen =40000;
+                                        ?><?php echo number_format($phivanchuyen, 0, '', ',')?>đ</span>
                                     </label>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="payment">
                                 <div class="payment__title">
                                     <h6>Thanh toán</h6>
                                 </div>
                                 <div class="radio-wrapper">
-                                    <input type="radio" name="pay-cod" required="required" value="Chưa thanh toán" id="pay-cod" class="radio__input">
-                                    <label for="pay-cod" class="radio__label">
+                                    <input id="pay-cod" value="pay-cod" type="radio" name="pay" required="required" value="Chưa thanh toán" id="pay-cod" class="radio__input">
+                                    <label for="pay" class="radio__label">
                                         <span class="radio__label__primary">Thanh toán khi giao hàng (COD)</span>
                                         <span class="radio__label__accessory"><i class="fa-solid fa-money-bill-1"></i></span>
                                     </label>
                                 </div>
+                                <div class="radio-wrapper">
+                                    <input id="pay-vnpay" value="pay-bank" type="radio" class="pay-vnpay" name="pay" required="required" value="Chưa thanh toán" id="pay-cod" class="radio__input">
+                                    <label for="pay" class="radio__label">
+                                        <span class="radio__label__primary">Thanh toán VNPAY</span>
+                                        <span class="radio__label__accessory"><i class="fa-solid fa-money-bill-1"></i></span>
+                                    </label>
+                                </div>
+                                
                             </div>
+                            <div id="bank" class="form-group payment" style="display: none;">
+                        <label  class="payment__title" for="bank_code"><h6>Ngân hàng</h6></label>
+                        <select name="bank_code" id="bank_code" class="form-control">
+                            <option value="">Không chọn</option>
+                            <option value="NCB"> Ngan hang NCB</option>
+                            <option value="AGRIBANK"> Ngan hang Agribank</option>
+                            <option value="SCB"> Ngan hang SCB</option>
+                            <option value="SACOMBANK">Ngan hang SacomBank</option>
+                            <option value="EXIMBANK"> Ngan hang EximBank</option>
+                            <option value="MSBANK"> Ngan hang MSBANK</option>
+                            <option value="NAMABANK"> Ngan hang NamABank</option>
+                            <option value="VNMART"> Vi dien tu VnMart</option>
+                            <option value="VIETINBANK">Ngan hang Vietinbank</option>
+                            <option value="VIETCOMBANK"> Ngan hang VCB</option>
+                            <option value="HDBANK">Ngan hang HDBank</option>
+                            <option value="DONGABANK"> Ngan hang Dong A</option>
+                            <option value="TPBANK"> Ngân hàng TPBank</option>
+                            <option value="OJB"> Ngân hàng OceanBank</option>
+                            <option value="BIDV"> Ngân hàng BIDV</option>
+                            <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
+                            <option value="VPBANK"> Ngan hang VPBank</option>
+                            <option value="MBBANK"> Ngan hang MBBank</option>
+                            <option value="ACB"> Ngan hang ACB</option>
+                            <option value="OCB"> Ngan hang OCB</option>
+                            <option value="IVB"> Ngan hang IVB</option>
+                            <option value="VISA"> Thanh toan qua VISA/MASTER</option>
+                        </select>
+                    </div>
                         </div>
                     </div>
                     
@@ -219,17 +257,17 @@ $quantity =0;
                                     <th class="total-line__name">Tạm tính</th>
                                     <td class="total-line__price"><?php echo number_format($total, 0, '', ',')?>đ</td>
                                 </tr>
-                                <!-- <tr class="total-line total-line--ship">
+                                <tr class="total-line total-line--ship">
                                     <th class="total-line__name">Vận chuyển</th>
-                                    <td class="total-line__price">40.000đ</td>
-                                </tr> -->
+                                    <td class="total-line__price"><?php echo number_format($phivanchuyen, 0, '', ',')?></td>
+                                </tr>
                             </tbody>
                             <tfoot class="total-line-table__footer">
                                 <tr class="line-hide"><td></td></tr>
                                 <tr class="total-line total-line--payment-due">
                                     <th class="total-line__name">Tổng cộng</th>
-                                    <td class="total-line__price"><?php echo number_format($total, 0, '', ',')?>đ</td>
-                                    <input name="total" value="<?=$total?>" type="hidden">
+                                    <td class="total-line__price"><?php echo number_format($total+$phivanchuyen, 0, '', ',')?>đ</td>
+                                    <input name="total" value="<?=$total+$phivanchuyen?>" type="hidden">
                                 </tr>
                             </tfoot>
                         </table>
@@ -238,7 +276,7 @@ $quantity =0;
                             <i class="fa-solid fa-angle-left"></i>
                                 Quay về giỏ hàng
                             </a>
-                            <button type="submit" name="btn-order" class="btn-order" >Đặt hàng</button>
+                            <button type="submit" name="redirect" class="btn-order" >Đặt hàng</button>
                         </div>
                     </div>
                 </div>
@@ -257,9 +295,22 @@ $quantity =0;
      function getSelect(){
         selectInput.value = selectAddress.value
         formSelected.submit();
-
      }
 
+    const VnPay=document.getElementById('pay-vnpay')
+    const Cod=document.getElementById('pay-cod')
+    const Bank = document.getElementById('bank')
+
+     function changeChecked(){
+        if(VnPay.checked ==true){
+         Bank.style.display="block";
+     }
+     else {
+        Bank.style.display="none";
+     }
+    }
+     VnPay.addEventListener('change',changeChecked);
+     Cod.addEventListener('change',changeChecked);
  </script>
     <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>

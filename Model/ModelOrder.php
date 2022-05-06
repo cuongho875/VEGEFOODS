@@ -17,6 +17,10 @@
             $result = $this->db->conn->query($sql);
             return $result;
         }
+        public function getOrderNew(){
+            $sql = " SELECT * FROM orders ORDER BY ngaydat DESC LIMIT 10";
+            return $this->db->conn->query($sql);   
+        }
         public function EditOrder($id,$thanhtoan,$trangthai){
             $sql = "UPDATE orders SET
             thanhtoan='$thanhtoan',
@@ -47,9 +51,8 @@
             $ngaydat = $this->db->conn->real_escape_string($ngaydat);
             $sql = "INSERT INTO orders (user_id, hoten, sdt, diachi, ghichu,email,thanhtoan,trangthai,total,ngaydat)
                                 VALUES ('$user_id','$hoten','$sdt', '$diachi', '$ghichu', '$email','$thanhtoan','$trangthai','$total','$ngaydat')";
-            $this->db->conn->query($sql);
-            $sql1= "SELECT MAX(order_id) FROM orders";
-            return $this->db->conn->query($sql1);
+
+            return $this->db->conn->query($sql);
         }
         public function addDetalOrder($order_id,$sanpham_id,$soluong,$gia){
             $order_id = $this->db->conn->real_escape_string($order_id);
@@ -59,5 +62,10 @@
             $sql = "INSERT INTO detail_order (order_id, sanpham_id, soluong,gia)
             VALUES ('$order_id','$sanpham_id','$soluong', '$gia')";
             return $this->db->conn->query($sql);
+        }
+        public function getOrder_id_Max(){
+            $sql1= "SELECT MAX(order_id) FROM orders";
+            $result = $this->db->conn->query($sql1);
+            return $result->fetch_array();
         }
      }

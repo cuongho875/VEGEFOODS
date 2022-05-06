@@ -35,16 +35,32 @@
               <h3><?php echo $detail['name']?></h3>
             </div>
             <div class="product-detail__price">
-              <h6><?php echo number_format($detail['gia'], 0, '', ',')?><u>đ</u></h6>
+              <h6><?php echo number_format($detail['gia'], 0, '', ',')?><u>đ</u><?='/'.$detail['weigth'].'Kg'?></h6>
             </div>
             <div class="product-detail__rest-quantity">
-            Còn lại:<?php echo $detail['soluong']*$detail['weigth']?> kg
+              <?php $wdetail=$detail['soluong']*$detail['weigth']?>
+            Còn lại:<?php
+            if($wdetail>0){
+              echo $detail['soluong']*$detail['weigth'].'kg';
+            }
+            else {
+              echo 'Hết hàng' ;
+            }
+             ?> 
             </div>
             <div class="product-detail__quantity">
               <label for="quantity">Số lượng: </label>
               <input type="number" name="quantity" value="1" min="0">
             </div>
+            <?php if($wdetail>0){
+              ?>
             <button class="product-detail__btn" name="addtocart" type="submit">Thêm vào giỏ</button>
+              <?php
+            } else {
+              ?>
+            <button disabled class="product-detail__btn" name="addtocart" type="submit">Thêm vào giỏ</button>
+              
+              <?php }?>
             <div class="product-detail__info">
               <div class="info--title">
                 Thông tin chi tiết sản phẩm

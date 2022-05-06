@@ -11,10 +11,16 @@
               <p>Email: vegefoods@email.com</p>
             </div>
           </div>
-          <div class="footer__right col-md-6"></div>
+          <div class="footer__right col-md-6">
+          <div id="googleMap" style="width:100%;height:400px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.669658423672!2d106.68006961411632!3d10.75992236244198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1b7c3ed289%3A0xa06651894598e488!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTw6BpIEfDsm4!5e0!3m2!1svi!2s!4v1651742355384!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+          </div>
         </div>
       </div>
     </footer>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
     <script src="/VEGEFOODS/public/site/jquery.min.js"></script>
     <script src="/VEGEFOODS/public/site/jquery-migrate-3.0.1.min.js"></script>
     <script src="/VEGEFOODS/public/site/popper.min.js"></script>

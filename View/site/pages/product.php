@@ -28,7 +28,7 @@
     color: #82ae46;
   }
 </style>
-<section class="banner" style="background-image: url(/VEGEFOODS/public/img/bg_1.jpg);">
+<section class="banner" style="background-image: url(/VEGEFOODS/public/site/img/bg_1.jpg);">
       <div class="banner--title">
         <div class="banner--title__content">
           <h1>Danh mục Sản phẩm</h1>
@@ -87,7 +87,7 @@
             }
               ?>
           <div class="product--item col-md-6 col-sm-12 col-lg-3">
-            <a href="../../View/site/?controller=detailProduct&sanpham_id=<?php echo $item['sanpham_id']?>">
+            <a href="/VEGEFOODS/?controller=detailProduct&sanpham_id=<?php echo $item['sanpham_id']?>">
               <div class="product--item__img">
                 <img src="<?php echo $item['image']?>" alt="">
               </div>

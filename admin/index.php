@@ -3,6 +3,8 @@
 	require('../Model/UserModel.php');
 	require('../Model/ModelProduct.php');
 	require('../Model/ModelOrder.php');
+	require('../Model/ThongkeModel.php');
+
 
 	require '../Lib/function.php';
 	require_once '../lib/login.php';
@@ -18,6 +20,7 @@
 		require '../View/admin/layouts/footer.php'; /*giao diện footer*/
 
 	} else {
+		
 		require('../View/admin/pages/home.php');
 
 		require '../View/admin/layouts/footer.php'; /*giao diện footer*/

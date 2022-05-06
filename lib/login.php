@@ -75,7 +75,7 @@ function loginAdmin($userModel)
                 * @var array
                 */
                     if ($data['user_group_id'] == '1') {
-                        header('Location: /VEGEFOODS/View/admin');
+                        header('Location: /VEGEFOODS/admin');
                     } else {
                         echo "<script>alert('Vui lòng đăng nhập lại')</script>";
                     }

@@ -10,7 +10,7 @@
     <section class="section">
       <div class="container">
         <div class="row category">
-        <a href="./?controller=product&loaisanpham_id=1" class="category-link category-link_left col-md-6 col-sm-12">
+        <a href="/VEGEFOODS/?controller=product&loaisanpham_id=1" class="category-link category-link_left col-md-6 col-sm-12">
         <div class="category--item">
           <div class="category--item__left item-cat" style="background-image: url(/VEGEFOODS/public/site/img/category1.jpg);">
         <div class="overlay"></div>
@@ -20,7 +20,7 @@
         </div>
       </div>
       </a>
-      <a href="./?controller=product&loaisanpham_id=2" class="category-link col-md-6 col-sm-12">
+      <a href="/VEGEFOODS/?controller=product&loaisanpham_id=2" class="category-link col-md-6 col-sm-12">
         <div class="category--item">
           <div class="category--item__right item-cat" style="background-image: url(/VEGEFOODS/public/site/img/category2.jpg);">
         <div class="overlay"></div>
@@ -120,7 +120,7 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <!-- <section class="section">
       <div class="container">
         <div class="blog row">
           <div class="blog__header col-md-12">
@@ -150,7 +150,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="section notic-bg">
       <div class="container">
         <div class="notic row">
