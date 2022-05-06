@@ -1,3 +1,4 @@
+
 <div class="content-wrapper" style="min-height: 1203.6px;">
     <section class="content-header">
         <div class="container-fluid">
@@ -50,10 +51,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <form method="post">
-                                    <?php
+                                        <?php
                                             $stt = 0;
                                             foreach ($orders as $order) {?>
+                                        <form method="post" action="/VEGEFOODS/admin/?controller=editOrder">
+
                                                 <tr>
                                                     <td><?=++$stt?></td>
                                                     <td>
@@ -124,23 +126,17 @@
                                                             </a>
                                                         </span>
                                                     </td>
+                                                    
                                                 </tr>
+                                        </form>
+
                                             <?php }
                                         ?>
-                                        </form>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                            <?php 
-                                if(isset($_POST['update-order'])){
-                                    $order_id = $_POST['order_id'];
-                                    $thanhtoan = $_POST['thanhtoan'];
-                                    $trangthai = $_POST['trangthai'];
-                                    $orderModel = new ModelOrder;
-                                    $orderModel->EditOrder($order_id,$thanhtoan,$trangthai);
-                                }
-                            ?>
+
                     </div>
                 </div>
                 <!-- /.card-body -->

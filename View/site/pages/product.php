@@ -1,6 +1,8 @@
 <?php
-          $vegetable = new ModelProduct();
-          $category = $vegetable->getCategory($_GET['loaisanpham_id'])?>
+		$vegetable = new ModelProduct();
+    $category = $vegetable->getCategory($_GET['loaisanpham_id']);
+
+?>
 <link rel="stylesheet" href="/VEGEFOODS/public/css/main.css" />
 <style>
        .products {
@@ -41,7 +43,12 @@
       <div class="container">
         <div class="product row">
           <div class="product--title col-md-12">
-            <h3><?php echo $category['tenloaisanpham']?></h3>
+            <h3><?php     if($_GET['loaisanpham_id']=='0'){
+   echo "Tất cả sản phẩm";}
+   else{
+    echo $category['tenloaisanpham'];
+   }
+            ?></h3>
             <div class="product--option">
               Sắp xếp theo
               <form id="#formSelect"  method="post">

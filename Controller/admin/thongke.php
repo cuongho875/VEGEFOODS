@@ -9,7 +9,6 @@ class Thongke {
         $productModel = new ModelProduct;
 		$orderModel = new ModelOrder;
 		$orders=$orderModel->getOrderNew();
-		$sanphambanchay=$thongkeModel->SanPhamBanChay();
 		
 		require('../View/admin/pages/thongke.php');
 	}

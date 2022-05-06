@@ -5,7 +5,9 @@
             $month=$_POST['month'];
         }
         $thongke = $thongkeModel->TkDoanhThu($month);
-        $tinhtrangs = $thongkeModel->TkTinhTrangDonHang();
+        $tinhtrangs = $thongkeModel->TkTinhTrangDonHang($month);
+		$sanphambanchay=$thongkeModel->SanPhamBanChay($month);
+
     ?>
 <div class="content-wrapper" style="min-height: 1203.6px;">
     <section class="content-header">

@@ -12,7 +12,6 @@ $orderModel= new ModelOrder;
 $productModel= new ModelProduct;
 $user = $userModel->getUser($_SESSION['email_user']);
 $order_id =$orderModel->getOrder_id_Max()['MAX(order_id)']+1;
-if(isset($_POST['redirect'])){
     if($_POST['pay']=='pay-cod'){
         $user_id = $user['user_id'];
         $hoten = $_POST['hoten'];
@@ -33,15 +32,16 @@ if(isset($_POST['redirect'])){
             $detailOrder=$orderModel->addDetalOrder($order_id,$sanpham_id,$soluong,$gia);
             $soluongcu = $productModel->getProductByID($sanpham_id)['soluong'];
             $productModel->setQuantity($sanpham_id,$soluongcu-$soluong);
-            unset($_SESSION['cart']);
-            unset($_SESSION['quantity']);
+        }
+        unset($_SESSION['cart']);
+        unset($_SESSION['quantity']);
             ?><script>
                 alert("Đặt hàng thành công")
                 </script>
             
                 <?php
                 header('Location: /VEGEFOODS');
-        }}
+        }
 
     else {
                     
@@ -52,7 +52,7 @@ if(isset($_POST['redirect'])){
  */
 require_once("./config.php");
 
-$vnp_TxnRef = $order_id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+$vnp_TxnRef = date('Ymd'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
 $vnp_OrderInfo = 'dat hang';
 // $vnp_OrderType = $_POST['order_type'];
 $vnp_Amount = $_POST['total']*100;
@@ -165,9 +165,9 @@ $returnData = array('code' => '00'
             $detailOrder=$orderModel->addDetalOrder($order_id,$sanpham_id,$soluong,$gia);
             $soluongcu = $productModel->getProductByID($sanpham_id)['soluong'];
             $productModel->setQuantity($sanpham_id,$soluongcu-$soluong);
-            unset($_SESSION['cart']);
-            unset($_SESSION['quantity']);
         }
+        unset($_SESSION['cart']);
+        unset($_SESSION['quantity']);
 
     if (isset($_POST['redirect'])) {
         header('Location: ' . $vnp_Url);
@@ -177,6 +177,6 @@ $returnData = array('code' => '00'
         echo json_encode($returnData);
     }
 
-}}
+}
 
 

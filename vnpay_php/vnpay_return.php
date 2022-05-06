@@ -99,6 +99,7 @@ require '../Model/UserModel.php';
 
                     </label>
                 </div> 
+                <a href="/VEGEFOODS">Tiếp tục mua hàng</a>
             </div>
             <p>
                 &nbsp;

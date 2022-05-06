@@ -27,7 +27,7 @@
             trangthai='$trangthai'
             WHERE order_id='$id'
             ";
-            $this->db->conn->query($sql);
+            return $this->db->conn->query($sql);
         }
         public function CancelOrder($id){
             $sql = "UPDATE orders SET
@@ -55,10 +55,10 @@
             return $this->db->conn->query($sql);
         }
         public function addDetalOrder($order_id,$sanpham_id,$soluong,$gia){
-            $order_id = $this->db->conn->real_escape_string($order_id);
-            $sanpham_id = $this->db->conn->real_escape_string($sanpham_id);
-            $soluong = $this->db->conn->real_escape_string($soluong);
-            $gia = $this->db->conn->real_escape_string($gia);
+            $order_id = $this->db->conn->$order_id;
+            $sanpham_id = $this->db->conn->$sanpham_id;
+            $soluong = $this->db->conn->$soluong;
+            $gia = $this->db->conn->$gia;
             $sql = "INSERT INTO detail_order (order_id, sanpham_id, soluong,gia)
             VALUES ('$order_id','$sanpham_id','$soluong', '$gia')";
             return $this->db->conn->query($sql);

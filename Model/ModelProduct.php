@@ -19,7 +19,12 @@ class ModelProduct extends Database{
 
     }
     public function getProductByCategory($loaisanpham_id){
-        $sql = "SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id'";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham ";
+        }
+        else {
+            $sql = "SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id'";
+        }
 		$result = $this->db->conn->query($sql);
         return $result;
     }
@@ -36,27 +41,57 @@ class ModelProduct extends Database{
         return $row;
     }
     public function NewProduct($loaisanpham_id){
-        $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY ngaythem DESC";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham  ORDER BY ngaythem DESC";
+        }
+        else{
+            $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY ngaythem DESC";
+
+        }
         $result = $this->db->conn->query($sql);
         return $result;
     }
     public function SortAZ($loaisanpham_id){
-        $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY name ASC";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham  ORDER BY name ASC";
+        }
+        else {
+            $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY name ASC";
+
+        }
         $result = $this->db->conn->query($sql);
         return $result;
     }
     public function SortZA($loaisanpham_id){
-        $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY name DESC";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham  ORDER BY name DESC";
+        }
+        else {
+            $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY name DESC";
+        }
         $result = $this->db->conn->query($sql);
         return $result;
     }
     public function SortUp($loaisanpham_id){
-        $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY gia ASC";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham  ORDER BY gia ASC";
+        }
+        else {
+            $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY gia ASC";
+
+        }
         $result = $this->db->conn->query($sql);
         return $result;
     }
     public function SortDown($loaisanpham_id){
-        $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY gia DESC";
+        if($loaisanpham_id=='0'){
+            $sql = "SELECT * FROM sanpham  ORDER BY gia DESC";
+        }
+        else {
+            $sql ="SELECT * FROM sanpham WHERE loaisanpham_id = '$loaisanpham_id' ORDER BY gia DESC";
+
+
+        }
         $result = $this->db->conn->query($sql);
         return $result;
     }
@@ -92,4 +127,8 @@ class ModelProduct extends Database{
 		
 		return $this->db->conn->query($sql);
 	}
+    public function getPrice($id){
+        $sql="SELECT gia FROM sanpham WHERE sanpham_id='$id'";
+        return $this->db->conn->query($sql)->fetch_array();
+    }
 };

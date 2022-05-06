@@ -150,7 +150,7 @@
                                     <input checked type="radio" name="tranport" id="tranport" class="radio__input">
                                     <label for="tranport" class="radio__label">
                                         <span class="radio__label__primary">Giao hàng tận nơi</span>
-                                        <span class="radio__label__accessory"><?php $phivanchuyen =40000;
+                                        <span class="radio__label__accessory"><?php $phivanchuyen =20000;
                                         ?><?php echo number_format($phivanchuyen, 0, '', ',')?>đ</span>
                                     </label>
                                 </div>
