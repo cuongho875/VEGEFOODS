@@ -13,7 +13,7 @@
             return $result;
         }
         public function getAllOrder(){
-            $sql = "SELECT * FROM orders";
+            $sql = "SELECT * FROM orders ORDER BY order_id DESC";
             $result = $this->db->conn->query($sql);
             return $result;
         }
@@ -55,10 +55,6 @@
             return $this->db->conn->query($sql);
         }
         public function addDetalOrder($order_id,$sanpham_id,$soluong,$gia){
-            $order_id = $this->db->conn->$order_id;
-            $sanpham_id = $this->db->conn->$sanpham_id;
-            $soluong = $this->db->conn->$soluong;
-            $gia = $this->db->conn->$gia;
             $sql = "INSERT INTO detail_order (order_id, sanpham_id, soluong,gia)
             VALUES ('$order_id','$sanpham_id','$soluong', '$gia')";
             return $this->db->conn->query($sql);

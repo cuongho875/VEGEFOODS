@@ -22,6 +22,9 @@ require '../Model/Database.php';
 require '../Model/ModelOrder.php';
 require '../Model/ModelProduct.php';
 require '../Model/UserModel.php';
+$userModel= new UserModel();
+$orderModel= new ModelOrder;
+$productModel= new ModelProduct;
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
         $inputData = array();
         foreach ($_GET as $key => $value) {
@@ -87,10 +90,39 @@ require '../Model/UserModel.php';
                         <?php
                         if ($secureHash == $vnp_SecureHash) {
                             if ($_GET['vnp_ResponseCode'] == '00') {
-                                     
+                                $user_id = $_SESSION['order']['user_id'];
+                                $hoten = $_SESSION['order']['hoten'];
+                                $sdt = $_SESSION['order']['sdt'];
+                                $diachi = $_SESSION['order']['diachi'];
+                                $ghichu =$_SESSION['order']['ghichu'];
+                                $email = $_SESSION['order']['email'];
+                                $thanhtoan = "Đã thanh toán";
+                                $trangthai = "Đang xử lý";
+                                $total = $_SESSION['order']['total'];
+                                $ngaydat = date('Y-m-d');
+                                $order=$orderModel->addOrder($user_id, $hoten, $sdt, $diachi, $ghichu, $email,$thanhtoan,$trangthai,$total,$ngaydat);
+                                $order_id =$orderModel->getOrder_id_Max()['MAX(order_id)'];
+                                foreach($_SESSION['cart'] as $item){
+                                    $sanpham_id=$item['sanpham_id'];
+                                    $soluong=$item['quantity'];
+                                    $gia=$item['gia'];
+                                    $detailOrder=$orderModel->addDetalOrder($order_id,$sanpham_id,$soluong,$gia);
+                                    $soluongcu = $productModel->getProductByID($sanpham_id)['soluong'];
+                                    $productModel->setQuantity($sanpham_id,$soluongcu-$soluong);
+                                }
+                                unset($_SESSION['order']);
+                                unset($_SESSION['cart']);
+                                unset($_SESSION['quantity']);
                                 echo "<span style='color:blue'>GD Thanh cong</span>";
+                                ?>
+                                 <a href="/VEGEFOODS">Tiếp tục mua hàng</a>
+
+                                <?php
                             } else {
                                 echo "<span style='color:red'>GD Khong thanh cong</span>";
+                                ?>
+                                 <a href="/VEGEFOODS/?controller=checkout">Thử lại lần nữa</a>
+                                <?php
                             }
                         } else {
                             echo "<span style='color:red'>Chu ky khong hop le</span>";
@@ -99,7 +131,6 @@ require '../Model/UserModel.php';
 
                     </label>
                 </div> 
-                <a href="/VEGEFOODS">Tiếp tục mua hàng</a>
             </div>
             <p>
                 &nbsp;

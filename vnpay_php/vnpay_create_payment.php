@@ -6,12 +6,11 @@ require '../Model/Database.php';
 require '../Model/ModelOrder.php';
 require '../Model/ModelProduct.php';
 require '../Model/UserModel.php';
-
 $userModel= new UserModel();
 $orderModel= new ModelOrder;
 $productModel= new ModelProduct;
 $user = $userModel->getUser($_SESSION['email_user']);
-$order_id =$orderModel->getOrder_id_Max()['MAX(order_id)']+1;
+// $order_id =$orderModel->getOrder_id_Max()['MAX(order_id)']+1;
     if($_POST['pay']=='pay-cod'){
         $user_id = $user['user_id'];
         $hoten = $_POST['hoten'];
@@ -52,7 +51,7 @@ $order_id =$orderModel->getOrder_id_Max()['MAX(order_id)']+1;
  */
 require_once("./config.php");
 
-$vnp_TxnRef = date('Ymd'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+$vnp_TxnRef = date('hsm'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
 $vnp_OrderInfo = 'dat hang';
 // $vnp_OrderType = $_POST['order_type'];
 $vnp_Amount = $_POST['total']*100;
@@ -144,8 +143,8 @@ if (isset($vnp_HashSecret)) {
 $returnData = array('code' => '00'
     , 'message' => 'success'
     , 'data' => $vnp_Url);
-    
-    if($returnData['code']=='00'){
+
+    if (isset($_POST['redirect'])) {
         $user_id = $user['user_id'];
         $hoten = $_POST['hoten'];
         $sdt = $_POST['sdt'];
@@ -156,24 +155,23 @@ $returnData = array('code' => '00'
         $trangthai = "Đang xử lý";
         $total = $_POST['total'];
         $ngaydat = date('Y-m-d');
-        $order=$orderModel->addOrder($user_id, $hoten, $sdt, $diachi, $ghichu, $email,$thanhtoan,$trangthai,$total,$ngaydat);
-        $order_id =$orderModel->getOrder_id_Max();
-        foreach($_SESSION['cart'] as $item){
-            $sanpham_id=$item['sanpham_id'];
-            $soluong=$item['quantity'];
-            $gia=$item['gia'];
-            $detailOrder=$orderModel->addDetalOrder($order_id,$sanpham_id,$soluong,$gia);
-            $soluongcu = $productModel->getProductByID($sanpham_id)['soluong'];
-            $productModel->setQuantity($sanpham_id,$soluongcu-$soluong);
-        }
-        unset($_SESSION['cart']);
-        unset($_SESSION['quantity']);
+        $_SESSION['order']=array(
+            "user_id"=>$user_id,
+            "hoten"=>$hoten,
+            "sdt"=>$sdt,
+            "diachi"=>$diachi,
+            "ghichu"=>$ghichu,
+            "email"=>$email,
+            "thanhtoan"=>$thanhtoan,
+            "trangthai"=>$trangthai,
+            "total"=>$total,
+            "ngaydat"=>$ngaydat
+        );
 
-    if (isset($_POST['redirect'])) {
         header('Location: ' . $vnp_Url);
         die();
             }
-    } else {
+     else {
         echo json_encode($returnData);
     }
 
