@@ -3,8 +3,8 @@
 class EditProduct {
 	public function __construct()
 	{
-		require_once('../../Model/admin/category.php');
-		require_once('../../Model/ModelProduct.php');
+		require_once('../Model/admin/category.php');
+		require_once('../Model/ModelProduct.php');
 
 		$categoryModel = new categoryModel;
 		$productModel = new ModelProduct();

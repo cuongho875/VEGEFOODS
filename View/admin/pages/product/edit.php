@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Tên sản phẩm</label>
-                        <input type="text" required="required" name="name_product" class="form-control" placeholder="Tên chuyên mục">
+                        <input type="text" required="required" value="<?=$productOld['name']?>" name="name_product" class="form-control" placeholder="Tên chuyên mục">
                     </div>
                     <div class="form-group">
                         <label>Danh mục</label>
@@ -32,13 +32,13 @@
                     </div>
                     <div class="form-group">
                         <label style="width: 8%;">Giá:</label>
-                        <input required="required" name="gia" placeholder="Giá"
+                        <input required="required" name="gia" value="<?=$productOld['gia']?>" placeholder="Giá"
                           style="width: 30%; height: 30px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></input>
                         <label>VND</label>
                     </div>
                     <div class="form-group">
                         <label style="width: 8%;">Cân nặng:</label>
-                        <input required="required" name="weigth" placeholder="Cân nặng"
+                        <input required="required" name="weigth" value="<?=$productOld['weigth']?>" placeholder="Cân nặng"
                           style="width: 30%; height: 30px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></input>
                         <label>Kg/Túi</label>
                     </div>
@@ -50,8 +50,8 @@
                     </div>
                     <div class="form-group" id="displayImg">
                         <label>Ảnh</label><br>
-                        <img width="100px" src="">
-                        <input type="hidden" value="" name="image_old">
+                        <img width="100px" src="<?=$productOld['image']?>">
+                        <input type="hidden" value="<?=$productOld['image']?>" name="image_old">
                     </div>
                     <div class="form-group">
                         <label style="width: 8%;">Chọn Ảnh:</label>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label>Nhà cung cấp:</label>
-                        <input name="nhacungcap" placeholder="Nhà cung cấp"
+                        <input name="nhacungcap" value="<?=$productOld['nhacungcap']?>" placeholder="Nhà cung cấp"
                           style="width: 100%; height: 50px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></input>
                     </div> 
                      <div class="form-group">

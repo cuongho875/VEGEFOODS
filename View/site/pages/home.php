@@ -40,25 +40,28 @@
             <h1>Sản phẩm nổi bật</h1>
           </div>
           <?php
-          $vegetable = new ModelProduct();
-          $row = $vegetable->getAllProduct();
+          $thongkeModel = new ThongkeModel();
+          $sanphambanchay=$thongkeModel->SanPhamBanChay(date('m'));
+          $row = $sanphambanchay;
+          $productModel = new ModelProduct;
           $i=0;
           foreach($row as $item){
+            $product=$productModel->getProductByID($item['sanpham_id']);
             $i++;
             if($i>12){
               break;
             }
               ?>
           <div class="product--item col-md-6 col-sm-12 col-lg-3">
-            <a href="/VEGEFOODS?controller=detailProduct&sanpham_id=<?php echo $item['sanpham_id']?>">
+            <a href="/VEGEFOODS?controller=detailProduct&sanpham_id=<?php echo $product['sanpham_id']?>">
               <div class="product--item__img">
-                <img src="<?php echo $item['image']?>" alt="">
+                <img src="<?php echo $product['image']?>" alt="">
               </div>
               <div class="product--item__title">
-                <h6><?php echo $item['name']?></h6>
+                <h6><?php echo $product['name']?></h6>
               </div>
               <div class="product--item__price">
-                <h5><?php echo number_format($item['gia'], 0, '', ',')?><u>đ</u></h5>
+                <h5><?php echo number_format($product['gia'], 0, '', ',')?><u>đ</u></h5>
               </div>
             </a>
           </div>

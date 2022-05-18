@@ -100,6 +100,7 @@
 }
 .modals.open {
     display: flex;
+    z-index: 1000 !important;
 }
 .modals-container {
     width: 700px;

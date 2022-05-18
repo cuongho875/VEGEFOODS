@@ -4,7 +4,7 @@
  function signUp($userModel) {
 		$email = $password = $ho = $ten = $sdt = NULL;
 		$error = array();
-		$error['email'] = $error['password'] = $error['ho'] = $error['ten'] = $error['sdt'] = $error['email_exist'] = NULL;
+		$error['email'] = $error['password'] = $error['ho'] = $error['ten'] = $error['sdt'] = $error['email_exist']=$error['sucsess'] = NULL;
 
 		if (isset($_POST['signup'])) {
 			if (empty($_POST['email'])) {
@@ -39,7 +39,7 @@
 					$error['email_exist'] = '* Địa chỉ email đã bị trùng';
 				} else {
 					$userModel->register($email, $password, $ho,$ten,$sdt);
-					echo "<script>alert('đăng ký thành công')</script>";
+					$error['sucsess']='đăng ký thành công';
 				}
 			}
 			

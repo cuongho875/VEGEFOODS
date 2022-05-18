@@ -131,4 +131,9 @@ class ModelProduct extends Database{
         $sql="SELECT gia FROM sanpham WHERE sanpham_id='$id'";
         return $this->db->conn->query($sql)->fetch_array();
     }
+    public function searchProduct($key){
+        $sql= "SELECT * FROM sanpham,loaisanpham WHERE name LIKE '%$key%' OR tenloaisanpham LIKE '%$key%' GROUP BY name";
+        $result = $this->db->conn->query($sql);
+        return $result;
+    }
 };

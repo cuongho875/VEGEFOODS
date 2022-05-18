@@ -6,6 +6,7 @@
 	$user_num = $userModel->getAllUser()->num_rows;
 	$orderModel = new ModelOrder();
 	$order_num = $orderModel->getAllOrder()->num_rows;
+	$order_total = $orderModel->getTotalMonth()->fetch_array();
 ?>
 <div class="content-wrapper" style="min-height: 365px;">
 	<div class="content-header">
@@ -45,7 +46,7 @@
 					<!-- small box -->
 					<div class="small-box bg-success">
 						<div class="inner">
-							<h3>53<sup style="font-size: 20px">%</sup></h3>
+							<h3><?=number_format($order_total['Total'], 0, '', ',')?>đ</h3>
 
 							<h4>DOANH THU</h4>
 						</div>

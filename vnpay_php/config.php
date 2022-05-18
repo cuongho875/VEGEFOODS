@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $vnp_TmnCode = "1E255ELV"; //Website ID in VNPAY System
 $vnp_HashSecret = "WWJXJXMPACALBLEWWIKXDVKYEACOGUZZ"; //Secret key
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://vegefoods.com/VEGEFOODS/vnpay_php/vnpay_return.php";
+$vnp_Returnurl = "http://localhost/VEGEFOODS/vnpay_php/vnpay_return.php";
 $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
 //Config input format
 //Expire

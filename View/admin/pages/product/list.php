@@ -65,10 +65,10 @@
                                                         <?=$category->getCategory($product['loaisanpham_id'])['tenloaisanpham']?>
                                                     </td>
                                                     <td>
-                                                        <?=$product['gia']?>
+                                                        <?=number_format($product['gia'], 0, '', ',')?><?='/'.$product['weigth'].'Kg'?>
                                                     </td>
                                                     <td>
-                                                        <?=$product['soluong']?>
+                                                        <?=$product['soluong']*$product['weigth'].'Kg'?>
                                                     </td>
                                                     <td>
                                                         <?=$product['ngaythem']?>

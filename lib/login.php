@@ -4,7 +4,7 @@ function login($userModel)
 {
     $email = $password = $ten = NULL;
     $error = array();
-    $error['email'] = $error['password'] = NULL;
+    $error['email'] = $error['password']=$error['login'] = NULL;
 
     if (isset($_POST['login'])) {
         if (empty($_POST['email'])) {
@@ -33,7 +33,7 @@ function login($userModel)
                 $_SESSION['email_user']=$data['email'];
                 header('Location: ./');
             } else {
-                echo "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
+                $error['login']='Sai mật khẩu hoặc tên đăng nhập';
             }
         }
     }

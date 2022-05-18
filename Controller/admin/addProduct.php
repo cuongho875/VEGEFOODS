@@ -30,10 +30,12 @@
                 $note = $_POST['note'];
                 $date = date('Y-m-d');
     			if ($name_product&&$image) {
+                    if($addProductModel->checkEsxistName($name_product)->num_rows<1){
                         $addProductModel->addProduct($name_product, $category_id, $gia, $weigth, $quantity, $image,$describe,$note,$nhacungcap,$date);
                         $_SESSION['thongbao'] = '* Thêm thành công';
                         header('Location: ?controller=listProduct');
-    
+                    }
+                    echo "<script>alert('Trùng tên sản phẩm')</script>";
                     
                 }
             }

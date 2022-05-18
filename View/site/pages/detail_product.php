@@ -67,6 +67,8 @@
               </div>
               <div class="info--body">
                 Cân nặng: <?php echo $detail['weigth']?> kg
+                <br>
+                Nhà cung cấp:<?php echo $detail['nhacungcap']?>
               </div>
             </div>
           </div>
@@ -89,7 +91,7 @@
                     }
                       ?>
                   <div class="product--item col-md-6 col-sm-12 col-lg-3">
-                    <a href="../../View/site/?controller=detailProduct&id=<?php echo $item['sanpham_id']?>">
+                    <a href="/VEGEFOODS/?controller=detailProduct&sanpham_id=<?php echo $item['sanpham_id']?>">
                       <div class="product--item__img">
                         <img src="<?php echo $item['image']?>" alt="">
                       </div>

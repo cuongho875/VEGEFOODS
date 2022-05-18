@@ -8,6 +8,24 @@
                     <h3>Đăng Nhập</h3>
                 </div>
                 <form action="" method="post" class="login--form col-8">
+                <?php
+                    $userModel = new UserModel();
+                    $error=login($userModel);
+                    if (isset($error['email'])) {?>
+                        <div class="alert alert-danger" style="top: 0; position: relative; z-index: 5; width: auto; right: 0px;" role="alert">
+                            <?php echo $error['email']?>
+                        </div>
+                    <?php } else if (isset($error['password'])) {?>
+                        <div class="alert alert-danger" style="top: 0; position: relative; z-index: 5; width: auto; right: 0px;" role="alert">
+                            <?=$error['password']?>
+                        </div>
+                    <?php }
+                    else if (isset($error['login'])) {?>
+                        <div class="alert alert-danger" style="top: 0; position: relative; z-index: 5; width: auto; right: 0px;" role="alert">
+                            <?=$error['login']?>
+                        </div>
+                    <?php }
+                ?>
                     <fieldset style="margin-bottom: 20px;">
                         <label for="">Email</label>
                         <input type="email" class="" placeholder="Nhập Địa chỉ Email" name="email">
@@ -24,19 +42,7 @@
                         <a href="./index.php?controller=register" title="Đăng ký">Tại đây</a>
                     </div>
                 </form>
-                <?php
-                    $userModel = new UserModel();
-                    $error=login($userModel);
-                    if (isset($error['email'])) {?>
-                        <div class="alert alert-danger" style="top: 155px; position: absolute; z-index: 5; width: auto; right: 0px;" role="alert">
-                            <?php echo $error['email']?>
-                        </div>
-                    <?php } else if (isset($error['password'])) {?>
-                        <div class="alert alert-danger" style="top: 155px; position: absolute; z-index: 5; width: auto; right: 0px;" role="alert">
-                            <?=$error['password']?>
-                        </div>
-                    <?php }
-                ?>
+
             </div>
         </div>
     </section>

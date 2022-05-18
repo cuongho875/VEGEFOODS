@@ -28,7 +28,7 @@ $user = $userModel->getUser($_SESSION['email_user']);
             $sanpham_id=$item['sanpham_id'];
             $soluong=$item['quantity'];
             $gia=$item['gia'];
-            $detailOrder=$orderModel->addDetalOrder($order_id,$sanpham_id,$soluong,$gia);
+            $detailOrder=$orderModel->addDetailOrder($order_id,$sanpham_id,$soluong,$gia);
             $soluongcu = $productModel->getProductByID($sanpham_id)['soluong'];
             $productModel->setQuantity($sanpham_id,$soluongcu-$soluong);
         }

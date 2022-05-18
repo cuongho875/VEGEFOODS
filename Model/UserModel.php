@@ -77,6 +77,19 @@ class UserModel extends Database{
 		)";
 		$this->db->conn->query($sql);
 	}
+	public function ChangePW($email,$password){
+		$password = md5(md5($password));
+		$sql = "UPDATE user
+				SET password ='$password'
+				WHERE email='$email'";
+		return $this->db->conn->query($sql);
+	}
+	public function checkPass($email,$password) {
+		$password = md5(md5($password));
+		$sql = "SELECT * FROM user WHERE password = '$password' AND email = '$email'";
+		$result = $this->db->conn->query($sql);
+		return $result;
+	}
 	public function EditDiachi($id,$hoten,$sdt,$diachi){
 		$sql = "UPDATE sodiachi SET
 		hoten = '$hoten',

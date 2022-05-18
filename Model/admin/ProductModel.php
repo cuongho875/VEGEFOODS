@@ -8,7 +8,10 @@ class ProductModel extends Database{
 		$this->db = new Database();
 		$this->db->connect();
 	}
-
+	public function checkEsxistName($name){
+		$sql="SELECT * FROM sanpham WHERE name = '$name'";
+		return $this->db->conn->query($sql);
+	}
 	public function addProduct($name_product, $category_id, $gia, $weigth, $quantity, $image,$describe,$note,$nhacungcap,$date)
 	{
 		$name_product = $this->db->conn->real_escape_string($name_product);

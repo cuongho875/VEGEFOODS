@@ -34,6 +34,11 @@
                                         </div>
                                     <?php }
                                 ?>
+                                <select>
+                                    <option>
+                                        
+                                    </option>
+                                </select>
                                 <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                     <thead>
                                         <tr role="row">
@@ -46,6 +51,7 @@
                                             <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">TT thanh toán</th>
                                             <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">TT vận chuyển</th>
                                             <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Cập nhật</th>
+                                            <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Chi tiết</th>
                                             <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Hủy</th>
                                             
                                         </tr>
@@ -117,6 +123,13 @@
                                                             <button type="submit" name="update-order" style="color:#fff;display:contents;background: transparent !important;border: 0 !important;">
                                                             <ion-icon name="checkmark-outline"></ion-icon>
                                                             </button>
+                                                        </span>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <span class="badge bg-primary">
+                                                            <a href="/VEGEFOODS/admin?controller=detail_order&orderId=<?=$order['order_id']?>">
+                                                                <ion-icon name="eye-outline"></ion-icon>
+                                                            </a>
                                                         </span>
                                                     </td>
                                                     <td style="text-align: center;">

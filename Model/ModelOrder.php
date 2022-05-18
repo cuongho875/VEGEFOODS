@@ -17,6 +17,12 @@
             $result = $this->db->conn->query($sql);
             return $result;
         }
+        public function getTotalMonth(){
+            $date=date('m');
+            $sql = "SELECT SUM(total) as Total FROM orders WHERE MONTH(ngaydat)='$date'";
+            $result = $this->db->conn->query($sql);
+            return $result;
+        }
         public function getOrderNew(){
             $sql = " SELECT * FROM orders ORDER BY ngaydat DESC LIMIT 10";
             return $this->db->conn->query($sql);   
@@ -54,14 +60,22 @@
 
             return $this->db->conn->query($sql);
         }
-        public function addDetalOrder($order_id,$sanpham_id,$soluong,$gia){
+        public function addDetailOrder($order_id,$sanpham_id,$soluong,$gia){
             $sql = "INSERT INTO detail_order (order_id, sanpham_id, soluong,gia)
             VALUES ('$order_id','$sanpham_id','$soluong', '$gia')";
             return $this->db->conn->query($sql);
         }
+        public function getDetailOrder($order_id){
+            $sql = "SELECT * from detail_order WHERE order_id='$order_id'";
+            return $this->db->conn->query($sql);
+        }
         public function getOrder_id_Max(){
-            $sql1= "SELECT MAX(order_id) FROM orders";
-            $result = $this->db->conn->query($sql1);
+            $sql= "SELECT MAX(order_id) FROM orders";
+            $result = $this->db->conn->query($sql);
             return $result->fetch_array();
+        }
+        public function deleteOrder($order_id){
+            $sql="DELETE FROM orders WHERE order_id='$order_id'";
+            return $this->db->conn->query($sql);
         }
      }

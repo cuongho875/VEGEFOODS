@@ -22,7 +22,11 @@
     <link rel="stylesheet" href="/VEGEFOODS/public/site/css/flaticon.css"/>
     <link rel="stylesheet" href="/VEGEFOODS/public/site/css/icomoon.css"/>
     <link rel="stylesheet" href="/VEGEFOODS/public/site/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
   </head>
+
   <body>
   <?php  
 	if(!isset($_SESSION['quantity'])){
@@ -47,6 +51,39 @@
                 </div>
             <?php }
         ?>
+
+
+<!-- The Modal -->
+<form method="get" action="/VEGEFOODS/?controller=search">
+<div class="modal  fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Tìm kiếm</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <input type="hidden" name="controller" value="search">
+
+        <input type="text" name="text-search" style="width: 80%;" required placeholder="Nhập tìm kiếm...">
+        <button class="btn btn-primary" type="submit" name="btn-search" style="background: #fff;border: 0px;">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</form>
     <header id="header" class="header">
       <div class="container">
         <div class=" row">
@@ -55,7 +92,7 @@
             <h3 class="header--title__content">VEGEFOODS</h3>
             </a>
         </div>
-          <div class="header--nav col-md-9">
+          <div class="header--nav col-md-9" style="display: flex;justify-content: space-between;">
               <ul class="header--nav__list">
                   <li class="header--nav__item">
                       <a href="/VEGEFOODS" class="nav__link">Trang chủ</a>
@@ -67,7 +104,7 @@
                       <a href="/VEGEFOODS?controller=product&loaisanpham_id=0" class="nav__link">Sản phẩm</a>
                 </li>
                   <li class="header--nav__item">
-                      <a href="" class="nav__link">Liên hệ</a>
+                      <a href="/VEGEFOODS?controller=contact" class="nav__link">Liên hệ</a>
                 </li>
                   <li class="header--nav__item">
                       <a href="/VEGEFOODS?controller=cart" class="nav__link">Giỏ hàng <span>(<?php
@@ -95,6 +132,10 @@
                   } ?>
 
               </ul>
+              <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="background: #fff;border: 0px;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
           </div>
         </div>
       </div>

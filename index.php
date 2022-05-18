@@ -3,9 +3,12 @@
 	require('./Model/UserModel.php');
 	require './lib/signup.php';
 	require './lib/login.php';
+	require './lib/doimatkhau.php';
 	require './Model/ModelProduct.php';
 	require './Model/ModelCart.php';
 	require './Model/ModelOrder.php';
+	require './Model/ThongkeModel.php';
+
 
 	$db = new Database();
     session_start();

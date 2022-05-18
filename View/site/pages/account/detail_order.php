@@ -120,55 +120,47 @@
             </ul>
             </div>
             <div class="col-lg-9 account__right">
-              <h1 class="title-head">Đơn hàng của bạn</h1>
+              <h1 class="title-head">Chi tiết đơn hàng: <?=$order_id?></h1>
                 <div class="table_orders">
                   <table style="width: 100%; max-width: 100%;margin-bottom: 20px;" class="table_order">
                     <thead class="thead-default">
                       <tr>
-                        <th>Đơn hàng</th>
-                        <th>Ngày</th>
-                        <th>Địa chỉ</th>
-                        <th>Giá trị đơn hàng</th>
-                        <th>TT thanh toán</th>
-                        <th>TT vận chuyển</th>
-                        <th>Chi tiết</th>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng tiền</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $userModel = new UserModel;
-                      $user_id=$userModel->getUser($_SESSION['email_user'])['user_id'];
-                      $orderModel = new ModelOrder;
-                      $orders=$orderModel->getOrder($user_id);
-                      if($orders){
-                       foreach($orders as $order){
+                      $productModel = new ModelProduct;
+                      $detail_orders;
+                      if($detail_orders){
+                          $stt=1;
+                       foreach($detail_orders as $detail_order){
+                           $product=$productModel->getProductByID($detail_order['sanpham_id']);
                          ?>
                       <tr>
                         <td >
-
-                          <p><?php echo $order['order_id'];?></p>
+                          <p><?php echo $stt; $stt++;?></p>
                         </td>
                         <td >
-                          <p><?=$order['ngaydat']?></p>
+                          <img style="width: 100px;" src="<?=$product['image']?>" alt="<?=$product['name']?>">
                         </td>
                         <td >
-                          <p><?=$order['diachi']?></p>
+                          <p><?=$product['name']?></p>
                         </td>
                         <td >
-                          <p><?=number_format($order['total'], 0, '', ',')?>đ</p>
+                          <p><?=$detail_order['soluong']*$product['weigth'].'Kg'?></p>
                         </td>
                         <td >
-                          <p><?=$order['thanhtoan']?></p>
+                          <p><?=number_format($detail_order['gia'], 0, '', ',')?>đ<?='/'.$product['weigth'].'Kg'?></p>
                         </td>
                         <td >
-                          <p><?=$order['trangthai']?></p>
+                          <p><?=number_format($detail_order['gia']*$detail_order['soluong'], 0, '', ',').'đ'?></p>
                         </td>
-                        <td>
-                        <a href="/VEGEFOODS/?controller=detail_order&order_id=<?=$order['order_id']?>">
-                        <i class="fa-solid fa-eye"></i>
-                        </a>
-                      </td>
-                      
                       </tr>
                       <?php }} else {
                         ?>
